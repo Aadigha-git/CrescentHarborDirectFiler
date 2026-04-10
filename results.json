@@ -1,0 +1,135 @@
+{
+  "reportFormat": "B",
+  "generatedAtUtc": "2026-04-10T06:30:59Z",
+  "run": {
+    "baseUrl": "http://127.0.0.1:8080",
+    "scenariosDir": "C:\\Users\\baaad\\Desktop\\CrescentHarborDirectFiler\\scenarios",
+    "filerId": "CHC100001"
+  },
+  "results": [
+    {
+      "file": "01-aurora-borealis.json",
+      "scenarioId": "01-aurora-borealis",
+      "outcome": "accepted",
+      "manifestId": "539BF2C91A854515AD792E198325F19F",
+      "receiptId": "DAC5925F23A2D21B",
+      "schemaErrors": [],
+      "ruleRejections": [],
+      "ruleWarnings": [],
+      "authorityErrors": [],
+      "errors": []
+    },
+    {
+      "file": "02-pacific-crest.json",
+      "scenarioId": "02-pacific-crest",
+      "outcome": "accepted",
+      "manifestId": "B54205EB992F4881991989AC90F11F19",
+      "receiptId": "3F1A261C4A6F5EEB",
+      "schemaErrors": [],
+      "ruleRejections": [],
+      "ruleWarnings": [
+        {
+          "ruleId": "R-015",
+          "message": "Surface a warning when hazmat is present, do not block transmission",
+          "field": "/containers"
+        }
+      ],
+      "authorityErrors": [],
+      "errors": []
+    },
+    {
+      "file": "03-star-of-helios.json",
+      "scenarioId": "03-star-of-helios",
+      "outcome": "accepted",
+      "manifestId": "FB1C6DE5B3BE47E8AE47C2150505C75A",
+      "receiptId": "4B5CEA8C3AD4988C",
+      "schemaErrors": [],
+      "ruleRejections": [],
+      "ruleWarnings": [],
+      "authorityErrors": [],
+      "errors": []
+    },
+    {
+      "file": "04-iron-brigade.json",
+      "scenarioId": "04-iron-brigade",
+      "outcome": "accepted",
+      "manifestId": "8F57B31118964CF987CF33BEC0077578",
+      "receiptId": "7B90F0C75FAA25C8",
+      "schemaErrors": [],
+      "ruleRejections": [],
+      "ruleWarnings": [],
+      "authorityErrors": [],
+      "errors": []
+    },
+    {
+      "file": "05-silver-mariner.json",
+      "scenarioId": "05-silver-mariner",
+      "outcome": "accepted",
+      "manifestId": "6359F87171BF4FF6BD25E9500640EC5B",
+      "receiptId": "85B38421DA1E5BC3",
+      "schemaErrors": [],
+      "ruleRejections": [],
+      "ruleWarnings": [],
+      "authorityErrors": [],
+      "errors": []
+    },
+    {
+      "file": "06-northern-lights.json",
+      "scenarioId": "06-northern-lights",
+      "outcome": "accepted",
+      "manifestId": "9BEFE698BC814694BD8A877C1315A60A",
+      "receiptId": "E71E39980A6153DF",
+      "schemaErrors": [],
+      "ruleRejections": [],
+      "ruleWarnings": [
+        {
+          "ruleId": "R-015",
+          "message": "Surface a warning when hazmat is present, do not block transmission",
+          "field": "/containers"
+        }
+      ],
+      "authorityErrors": [],
+      "errors": []
+    },
+    {
+      "file": "07-tempest.json",
+      "scenarioId": "07-tempest",
+      "outcome": "rejected_by_rules",
+      "manifestId": "EE845D5B88484FB889B59D9883EB3895",
+      "receiptId": null,
+      "schemaErrors": [],
+      "ruleRejections": [
+        {
+          "ruleId": "R-016",
+          "message": "declaredValueTotal must equal sum of container declaredValueUSD, half-away rounding to cents",
+          "rejectionCode": "V-301",
+          "field": "/declaredValueTotal"
+        }
+      ],
+      "ruleWarnings": [],
+      "authorityErrors": [],
+      "errors": [
+        "R-016: declaredValueTotal must equal sum of container declaredValueUSD, half-away rounding to cents"
+      ]
+    },
+    {
+      "file": "08-polaris.json",
+      "scenarioId": "08-polaris",
+      "outcome": "rejected_by_schema",
+      "manifestId": "586189AF1FE84F61929026101238BE92",
+      "receiptId": null,
+      "schemaErrors": [
+        {
+          "code": "M-102",
+          "message": "/vessel/vesselType: 'PASSENGER' is not one of ['CONTAINER', 'BULK', 'TANKER', 'RORO', 'GENERAL']"
+        }
+      ],
+      "ruleRejections": [],
+      "ruleWarnings": [],
+      "authorityErrors": [],
+      "errors": [
+        "/vessel/vesselType: 'PASSENGER' is not one of ['CONTAINER', 'BULK', 'TANKER', 'RORO', 'GENERAL']"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+[console_scripts]
+crescent-filer = crescent_filer.cli:app

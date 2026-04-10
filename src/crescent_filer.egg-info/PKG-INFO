@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: crescent-filer
+Version: 0.1.0
+Summary: Cargo Arrival Manifest filer for Crescent Harbor Direct Filer protocol
+Requires-Python: >=3.11
+Requires-Dist: httpx<0.29,>=0.27
+Requires-Dist: jsonschema<5,>=4.23
+Requires-Dist: referencing<0.37,>=0.35
+Requires-Dist: pydantic[email]<3,>=2.9
+Requires-Dist: typer<0.20,>=0.12
+Provides-Extra: dev
+Requires-Dist: pytest<9,>=8; extra == "dev"
