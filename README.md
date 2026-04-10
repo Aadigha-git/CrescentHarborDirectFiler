@@ -1,6 +1,52 @@
 # Crescent Harbor Direct Filer
+## Running
 
-This implementation is intentionally opinionated: correctness before throughput, explicit policy before clever abstractions, and auditable behavior before "smart" automation.
+This repo assumes **Python 3.11+**. On Windows, make sure you run `pip` and `python` from the **same interpreter**.
+
+### 1) Install
+
+PowerShell:
+
+```powershell
+cd c:\Users\baaad\Desktop\CrescentHarborDirectFiler
+py -3.11 -m pip install -e ".[dev]"
+```
+
+bash:
+
+```bash
+cd /path/to/CrescentHarborDirectFiler
+python3 -m pip install -e ".[dev]"
+```
+
+### 2) Start the mock Authority (terminal A)
+
+PowerShell:
+
+```powershell
+$env:CUSTOMS_SCHEMA_PATH = "$pwd\schema\manifest.schema.json"
+$env:CUSTOMS_SECRETS_PATH = "$pwd\mock-customs\secrets.json"
+py -3.11 mock-customs\server.py
+```
+
+bash:
+
+```bash
+export CUSTOMS_SCHEMA_PATH="$PWD/schema/manifest.schema.json"
+export CUSTOMS_SECRETS_PATH="$PWD/mock-customs/secrets.json"
+python3 mock-customs/server.py
+```
+
+### 3) Run all scenarios and write `results.json` (terminal B)
+
+PowerShell:
+
+```powershell
+$env:CRESCENT_HARBOR_ROOT = (Get-Location).Path
+py -3.11 -m crescent_filer.pipeline.batch_runner
+```
+
+Output: `results.json` at the repo root (Format B).
 
 ## What I Built
 
@@ -14,11 +60,9 @@ I built a deterministic filing pipeline for one document type (Cargo Arrival Man
 - `pipeline` orchestrates single-file and batch execution.
 - `batch_runner` iterates every `scenarios/*.json`, classifies outcomes dynamically, and writes `results.json` in Format B.
 
-The core decision: **treat schema, business rules, and transport as separate gates**. That separation gives us clean ownership and cleaner incident debugging.
+**Schema, business rules, and transport are treated as separate gates to give clean ownership and incident debugging**.
 
 ## What I Cut (and Why)
-
-I intentionally did not build several things, because they are expensive and distract from proving filing correctness:
 
 1. **Persistent amendment state store**
    - I did not add DB-backed state for `amendmentSequence` lineage.
@@ -26,7 +70,7 @@ I intentionally did not build several things, because they are expensive and dis
 
 2. **Rich observability stack**
    - No OpenTelemetry traces, log shipping, or metrics backend.
-   - Why: until throughput and SLO targets are explicit, high-fidelity telemetry is premature optimization.
+   - Why: until throughput and SLO targets are explicit, high-fidelity telemetry is unnecessary optimization.
 
 3. **Secret manager integration**
    - The HMAC secret is loaded from env or local secrets file.
@@ -42,7 +86,7 @@ I intentionally did not build several things, because they are expensive and dis
 
 ## How This Scales to 5 Document Types Across 3 Regulators
 
-My stance: **you do not scale by copying pipelines; you scale by standardizing contracts and plugging regulator/document adapters into them.**
+Ideally, copying and running multiple pipelines can become cumbersome. It would make better sense to standardize contracts to plug and play easier.
 
 ### Architecture direction
 
@@ -97,5 +141,4 @@ If schedule were unconstrained, I would invest in reliability and compliance dep
 
 6. **Compliance-grade observability**
    - Structured logs with PII-safe redaction, audit exports, and dashboarded SLOs by regulator/doc type.
-
-Bottom line: this build is intentionally "correct and inspectable" rather than "feature-rich." That is the right tradeoff at this stage.
+  
