@@ -8,7 +8,6 @@ This repo assumes **Python 3.11+**. On Windows, make sure you run `pip` and `pyt
 PowerShell:
 
 ```powershell
-cd c:\Users\baaad\Desktop\CrescentHarborDirectFiler
 py -3.11 -m pip install -e ".[dev]"
 ```
 
